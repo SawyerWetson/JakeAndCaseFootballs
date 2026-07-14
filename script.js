@@ -268,7 +268,7 @@ if (orderForm) {
         try {
 
 
-            const response = await fetch("/api/orders", {
+           const response = await fetch("https://jake-case-footballs-api.onrender.com/", {
 
                 method:"POST",
 
