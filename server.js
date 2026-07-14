@@ -52,6 +52,7 @@ app.post("/api/orders", async (req,res)=>{
 
     try {
 
+        console.log("Creating transporter...");
 
         const transporter =
         nodemailer.createTransport({
@@ -70,7 +71,7 @@ app.post("/api/orders", async (req,res)=>{
 
         });
 
-
+        console.log("Transporter created, sending email...");
 
         await transporter.sendMail({
 
@@ -130,7 +131,7 @@ Cash
 
         });
 
-
+        console.log("Email sent successfully!");
 
         res.json({
 
@@ -148,9 +149,7 @@ Cash
 
     catch(error){
 
-
-        console.error(error);
-
+        console.error("Error:", error.message);
 
         res.status(500).json({
 
