@@ -71,7 +71,7 @@ app.post("/api/orders", async (req,res)=>{
         const transporter =
         nodemailer.createTransport({
 
-            service:"gmail",
+            service: process.env.EMAIL_SERVICE || "outlook365",
 
             auth:{
 
@@ -94,7 +94,7 @@ app.post("/api/orders", async (req,res)=>{
 
 
             to:
-            "jakejakebw16@icloud.com",
+            process.env.EMAIL_USER,
 
 
             subject:
