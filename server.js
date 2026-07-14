@@ -19,7 +19,11 @@ const app = express();
 
 // Middleware
 
-app.use(cors());
+app.use(cors({
+    origin: "https://jakeandcasefootballs.onrender.com",
+    methods: ["POST", "GET", "OPTIONS"],
+    credentials: true
+}));
 
 app.use(express.json());
 
