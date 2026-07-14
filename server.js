@@ -28,25 +28,6 @@ app.use(express.urlencoded({
 }));
 
 
-// Serve website files
-
-app.use(express.static("public"));
-
-
-
-// Home page
-
-app.get("/", (req,res)=>{
-
-    res.sendFile(
-        __dirname + "/public/index.html"
-    );
-
-});
-
-
-
-
 // ================================================
 // ORDER SUBMISSION
 // ================================================
@@ -172,7 +153,8 @@ Cash
             success:false,
 
             message:
-            "Server error"
+            "Server error",
+            error: error.message
 
         });
 
