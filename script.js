@@ -214,28 +214,124 @@ reveal();
 
 
 /* ===================================================
-   ORDER FORM
+   ORDER FORM SUBMISSION
 =================================================== */
 
-
-const orderForm =
-document.getElementById("orderForm");
+const orderForm = document.getElementById("orderForm");
 
 
-if(orderForm){
+if (orderForm) {
+
+    orderForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
 
 
-orderForm.addEventListener(
-"submit",
-function(event){
+        const orderData = {
+
+            name:
+            document.getElementById("name").value,
+
+            email:
+            document.getElementById("email").value,
+
+            phone:
+            document.getElementById("phone").value,
+
+            brand:
+            document.getElementById("brand").value,
+
+            size:
+            document.getElementById("size").value,
+
+            condition:
+            document.getElementById("condition").value,
+
+            delivery:
+            document.getElementById("delivery").value,
+
+            location:
+            document.getElementById("location").value,
+
+            date:
+            document.getElementById("date").value,
+
+            time:
+            document.getElementById("time").value,
+
+            notes:
+            document.getElementById("notes").value
+
+        };
 
 
-event.preventDefault();
+        try {
 
 
-alert(
-"Thank you! Your request has been received. Jake & Case will contact you soon."
-);
+            const response = await fetch("/api/orders", {
+
+                method:"POST",
+
+                headers: {
+
+                    "Content-Type":"application/json"
+
+                },
+
+                body: JSON.stringify(orderData)
+
+            });
+
+
+
+            const result = await response.json();
+
+
+
+            if(result.success) {
+
+
+                alert(
+                    "Your football reconditioning request has been sent!"
+                );
+
+
+                orderForm.reset();
+
+
+            }
+
+            else {
+
+
+                alert(
+                    "Something went wrong. Please try again."
+                );
+
+
+            }
+
+
+        }
+
+
+        catch(error) {
+
+
+            console.error(error);
+
+
+            alert(
+                "Unable to send order. Please contact Jake & Case directly."
+            );
+
+
+        }
+
+
+    });
+
+}
 
 
 
