@@ -226,6 +226,7 @@ if (orderForm) {
 
         event.preventDefault();
 
+        console.log("Form submitted!");
 
         const orderData = {
 
@@ -264,9 +265,11 @@ if (orderForm) {
 
         };
 
+        console.log("Order data:", orderData);
 
         try {
 
+            console.log("Sending request to API...");
 
             const response = await fetch("https://jake-case-footballs-api.onrender.com/api/orders", {
 
@@ -282,52 +285,48 @@ if (orderForm) {
 
             });
 
+            console.log("Response received:", response);
+            console.log("Response status:", response.status);
 
+            if (!response.ok) {
+                console.error("HTTP error:", response.status, response.statusText);
+                alert("Server error: " + response.status + " " + response.statusText);
+                return;
+            }
 
             const result = await response.json();
 
-
+            console.log("Result:", result);
 
             if(result.success) {
-
 
                 alert(
                     "Your football reconditioning request has been sent!"
                 );
 
-
                 orderForm.reset();
-
 
             }
 
             else {
 
-
                 alert(
                     "Something went wrong. Please try again."
                 );
 
-
             }
 
-
         }
-
 
         catch(error) {
 
-
-            console.error(error);
-
+            console.error("Catch error:", error);
 
             alert(
-                "Unable to send order. Please contact Jake & Case directly."
+                "Unable to send order. Error: " + error.message
             );
 
-
         }
-
 
     });
 
