@@ -361,12 +361,48 @@ document.getElementById("email").value
 
 
 */
-
+   
 
 orderForm.reset();
 
-
+ 
 });
+ /* ===================================================
+   BEFORE / AFTER SLIDER
+=================================================== */
 
+
+const comparisonSliders =
+document.querySelectorAll(".slider-control");
+
+
+comparisonSliders.forEach(function(slider){
+
+
+    slider.addEventListener("input", function(){
+
+
+        const container =
+        slider.parentElement;
+
+
+        const beforeImage =
+        container.querySelector(".before-image");
+
+
+        beforeImage.style.width =
+        slider.value + "%";
+
+
+        container.style.setProperty(
+            "--slider-position",
+            slider.value + "%"
+        );
+
+
+    });
+
+
+}); 
 
 }
