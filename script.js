@@ -370,39 +370,23 @@ orderForm.reset();
  /* ===================================================
    BEFORE / AFTER SLIDER
 =================================================== */
-
-
-const comparisonSliders =
+const comparisonSliders = 
 document.querySelectorAll(".slider-control");
 
 
-comparisonSliders.forEach(function(slider){
+comparisonSliders.forEach(function(slider) {
 
-
-    slider.addEventListener("input", function(){
-
-
-        const container =
-        slider.parentElement;
-
+    slider.addEventListener("input", function() {
 
         const beforeImage =
-        container.querySelector(".before-image");
+        slider.parentElement.querySelector(".before-image");
 
 
         beforeImage.style.width =
         slider.value + "%";
 
-
-        container.style.setProperty(
-            "--slider-position",
-            slider.value + "%"
-        );
-
-
     });
 
-
-}); 
+});
 
 }
